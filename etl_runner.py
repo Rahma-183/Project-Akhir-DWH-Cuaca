@@ -93,7 +93,7 @@ def get_weekly_window():
     state     = load_state()
     minggu_ke = state.get("minggu_ke", 0)
 
-    start_dt  = datetime(2023, 1, 1) + timedelta(weeks=minggu_ke)
+    start_dt  = datetime(2025, 1, 1) + timedelta(weeks=minggu_ke)
     end_dt    = start_dt + timedelta(days=6)
 
     today = datetime.utcnow().date()
