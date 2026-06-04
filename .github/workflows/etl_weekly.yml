@@ -1,0 +1,26 @@
+name: ETL Mingguan
+
+on:
+  schedule:
+    - cron: '0 3 * * 5' 
+  workflow_dispatch:        
+
+jobs:
+  run-etl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests pandas sqlalchemy psycopg2-binary numpy
+      - name: Run ETL
+        run: python etl_runner.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      - name: Save state artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: etl-state
+          path: etl_state.json
