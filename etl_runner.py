@@ -388,7 +388,7 @@ def main():
     tables = transform(df_raw)
     engine = create_engine(SUPABASE_URL)
     load_to_db(tables, engine)
-
+    
     save_state({
         "run_ke":    state["run_ke"] + 1,
         "minggu_ke": state.get("minggu_ke", 0) + 1
